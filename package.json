@@ -1,0 +1,27 @@
+{
+  "name": "puppies-backend",
+  "version": "1.0.0",
+  "description": "It has all the logic regarding to puppies app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sneuder/puppies-backend.git"
+  },
+  "author": "sneuder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sneuder/puppies-backend/issues"
+  },
+  "homepage": "https://github.com/sneuder/puppies-backend#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1"
+  }
+}
