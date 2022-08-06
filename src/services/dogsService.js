@@ -1,5 +1,4 @@
 const axios = require('axios');
-const axiosConfig = require('../utils/axiosConfig');
 const axiosRequest = require('../utils/axiosRequest');
 
 const getAllDogs = () => {
