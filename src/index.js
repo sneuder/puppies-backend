@@ -13,6 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // adding routes
+app.use('/api', database);
 app.use('/api', dogs);
 
 app.listen(PORT, () => console.log('Server listening'));
