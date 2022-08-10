@@ -1,4 +1,3 @@
-const { forEach } = require('lodash');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('puppies', 'postgres', 'postgres', {
