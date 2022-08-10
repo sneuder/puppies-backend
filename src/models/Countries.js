@@ -2,11 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   const Countries = sequelize.define('countries', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
-    country: {
+    origin: {
       type: DataTypes.STRING,
       allowNull: false
     }
