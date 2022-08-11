@@ -3,14 +3,11 @@ const Database = require('../database/Database');
 
 const postDatabase = async () => {
   const allDogs =  await axiosRequest('GET', '/breeds');
-  Database.postDatabase(allDogs);
-  return allDogs;
+  const dataBaseDogs = await Database.postDatabase(allDogs);
+  return dataBaseDogs;
 };
 
-const postDatabaseTemps = () => {
-  
-}
-
+// remove
 const deleteDatabase = () => {
   Database.deleteDatabase();
 };

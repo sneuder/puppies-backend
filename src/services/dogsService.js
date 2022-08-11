@@ -1,17 +1,26 @@
 const axios = require('axios');
 const axiosRequest = require('../utils/axiosRequest');
+const Database = require('../database/Dogs');
 
-const getAllDogs = () => {
-  return axiosRequest('GET', '/breeds');
+const getAllDogs = async () => {
+  return await Database.getAllDogs();
 };
 
-const getOneDog = () => {};
+const getOneDog = async (dogId) => {
+  return await Database.getOneDog(dogId);
+};
 
-const postOneDog = () => {};
+const postOneDog = async (dog) => {
+  return await Database.postOneDog(dog);
+};
 
-const patchOneDog = () => {};
+const patchOneDog = async (dogPortion, dogId) => {
+  return await Database.patchOneDog(dogPortion, dogId);
+};
 
-const deleteOneDog = () => {};
+const deleteOneDog = async (dogId) => {
+  return await Database.deleteOneDog(dogId);
+};
 
 module.exports = {
   getAllDogs,

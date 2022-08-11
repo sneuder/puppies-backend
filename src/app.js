@@ -7,6 +7,9 @@ const breeds = require('./routes/breeds');
 
 const app = express();
 
+// body-parser
+app.use(express.json());
+
 // adding routes
 app.use('/api', database);
 app.use('/api', dogs);
