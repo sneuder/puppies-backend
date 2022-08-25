@@ -1,5 +1,3 @@
-const axios = require('axios');
-const axiosRequest = require('../utils/axiosRequest');
 const Database = require('../database/Dogs');
 
 const getAllDogs = async () => {
