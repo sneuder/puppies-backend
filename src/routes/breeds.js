@@ -1,13 +1,13 @@
 const { Router } = require('express');
 const router = Router();
 
-router.get('/breeds', (req, res) => {
-  res.send("hola");
-});
+const breedsControllers = require('../controllers/breedsControllers');
 
-router.post('/breeds/:breed', (req, res) => {
-  res.send('Bread Created');
-});
+router.get('/breeds/allBreeds', breedsControllers.getAllBreeds);
+router.get('/breeds/:breedId', breedsControllers.getOneBreed);
+router.post('/breeds/newBreed', breedsControllers.postOneBreed);
+router.patch('/breeds/:breedId', breedsControllers.patchOneBreed);
+router.delete('/breeds/:breedId', breedsControllers.deleteOneBreed);
 
 
 

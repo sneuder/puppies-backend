@@ -2,26 +2,16 @@ const sequelize = require('../db');
 const formating = require('../utils/formatting');
 
 const Dogs = sequelize.models.dogs;
-const Temps = sequelize.models.temps;
-const Breeds = sequelize.models.breeds;
-const BredsFor = sequelize.models.bredsfors;
-const Countries = sequelize.models.countries;
-
-// Attributes to save
 const attributes = {
-  'temperament': Temps,
-  'breed_group': Breeds,
-  'bred_for': BredsFor,
-  'origin': Countries
+  'temperament': sequelize.models.temps,
+  'breed_group': sequelize.models.breeds,
+  'bred_for': sequelize.models.bredsfors,
+  'origin': sequelize.models.countries
 };
 
 // Delete de data base and then populate it
 const postDatabase = async (dogs) => {
-  deleteDatabase();
-  postDatabaseAttributes(dogs);
-
-  const formatedDogs = formating.postDogs(dogs);
-  return await Dogs.bulkCreate(formatedDogs);
+  return await Dogs.bulkCreate(dogs);
 };
 
 // Add all information in common related to dogs
@@ -47,5 +37,6 @@ const deleteDatabase = async () => {
 
 module.exports = {
   postDatabase,
+  postDatabaseAttributes,
   deleteDatabase 
 };

@@ -13,5 +13,6 @@ app.use(express.json());
 // adding routes
 app.use('/api', database);
 app.use('/api', dogs);
+app.use('/api', breeds);
 
 module.exports = app;
