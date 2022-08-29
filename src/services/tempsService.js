@@ -8,12 +8,12 @@ const getOneTemp = async (tempId) => {
   return await Temps.getOneTemp(tempId);
 };
 
-const postOneTemp = () => {
-
+const postOneTemp = async (temp) => {
+  return await Temps.postOneTemp(temp);
 };
 
-const patchOneTemp = () => {
-
+const patchOneTemp = async (tempId, tempPortion) => {
+  return await Temps.patchOneTemp(tempId, tempPortion)
 };
 
 const deleteOneTemp = () => {

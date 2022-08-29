@@ -11,12 +11,18 @@ const getOneTemp = async (req, res) => {
   res.json(temp);
 };
 
-const postOneTemp = (req, res) => {
-
+const postOneTemp = async (req, res) => {
+  const newTemp = req.body;
+  const temp = await tempsService.postOneTemp(newTemp);
+  res.json(temp);
 };
 
-const patchOneTemp = (req, res) => {
-
+const patchOneTemp = async (req, res) => {
+  const tempId = req.params.tempId;
+  const tempPortion = req.body;
+  
+  const msg = await tempsService.patchOneTemp(tempId, tempPortion);
+  res.json(msg);
 };
 
 const deleteOneTemp = (req, res) => {
