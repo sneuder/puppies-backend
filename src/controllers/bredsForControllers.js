@@ -1,6 +1,8 @@
+const bredsForService = require('../services/bredsForService');
 
-const getAllBredsFor = (req, res) => {
-
+const getAllBredsFor = async (req, res) => {
+  const allBredsFor = await bredsForService.getAllBredsFor();
+  res.json(allBredsFor);
 };
 
 const getOneBredFor = (req, res) => {

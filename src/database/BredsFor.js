@@ -1,8 +1,9 @@
 const sequelize = require('../db');
-const BredsFor = sequelize.models.BredsFor;
+const BredsFor = sequelize.models.bredsfors;
 
-const getAllBredsFor = () => {
-
+const getAllBredsFor = async () => {
+  try {return await BredsFor.findAll() || {status: 'There are not BredsFor'};
+  } catch(e) {return {status: 'Something went wrong'}};
 };
 
 const getOneBredFor = () => {

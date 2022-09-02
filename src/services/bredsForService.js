@@ -1,6 +1,7 @@
+const BredsFor = require('../database/BredsFor');
 
-const getAllBredsFor = () => {
-
+const getAllBredsFor = async () => {
+  return await BredsFor.getAllBredsFor();
 };
 
 const getOneBredFor = () => {
