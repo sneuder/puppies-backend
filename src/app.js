@@ -5,6 +5,7 @@ const database = require('./routes/database');
 const dogs = require('./routes/dogs')
 const breeds = require('./routes/breeds');
 const temps = require('./routes/temps');
+const bredsFor = require('./routes/bredsFor');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api', database);
 app.use('/api', dogs);
 app.use('/api', breeds);
+app.use('/api', bredsFor);
 app.use('/api', temps);
 
 module.exports = app;
