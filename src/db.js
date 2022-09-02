@@ -6,10 +6,10 @@ const sequelize = new Sequelize('puppies', 'postgres', 'postgres', {
   logging: false
 });
 
-// linking modoles to database
+// linking models to database
 const requireModels = ['Dogs', 'Temps', 'Countries', 'Breeds', 'BredsFor'];
-requireModels.forEach(requireModel => {
-  const model = require(`./models/${requireModel}`);
+requireModels.forEach( requiredModel => {
+  const model = require(`./models/${requiredModel}`);
   model(sequelize);
 });
 
