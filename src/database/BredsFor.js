@@ -11,16 +11,23 @@ const getOneBredFor = async (bredForId) => {
   } catch(e) {return {status: 'Something went wrong'}}
 };
 
-const postOneBredFor = () => {
-
+const postOneBredFor = async (newBredFor) => {
+  try {return await BredsFor.create(newBredFor)
+  } catch (e) {return {status: 'BredFor could not be created'}}
 };
 
-const patchOneBredFor = () => {
-
+const patchOneBredFor = async (bredForPortion, bredForId) => {
+  try {
+    await BredsFor.update(bredForPortion, {where: {id: bredForId}});
+    return {status: `BredFor ${bredForId} updated`}
+  } catch (e) {return {status: `BredFor ${bredForId} not updated`}}
 };
 
-const deleteOneBredFor = () => {
-
+const deleteOneBredFor = async (bredForId) => {
+  try {
+    await BredsFor.destroy(bredForId);
+    return {status: `BredFor ${bredForId} removed`}
+  } catch (e) {return {status: `BredFor ${bredForId} could not be removed`}}
 };
 
 module.exports = {
