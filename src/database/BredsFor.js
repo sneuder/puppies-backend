@@ -6,8 +6,9 @@ const getAllBredsFor = async () => {
   } catch(e) {return {status: 'Something went wrong'}};
 };
 
-const getOneBredFor = () => {
-
+const getOneBredFor = async (bredForId) => {
+  try {return await BredsFor.findByPk(bredForId) || {status: 'There is not BredFor'}
+  } catch(e) {return {status: 'Something went wrong'}}
 };
 
 const postOneBredFor = () => {

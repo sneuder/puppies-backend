@@ -16,8 +16,8 @@ const patchOneTemp = async (tempId, tempPortion) => {
   return await Temps.patchOneTemp(tempId, tempPortion)
 };
 
-const deleteOneTemp = () => {
-
+const deleteOneTemp = async (tempId) => {
+  return await Temps.deleteOneTemp(tempId);
 };
 
 module.exports = {

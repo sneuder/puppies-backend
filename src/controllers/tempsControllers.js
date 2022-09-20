@@ -25,8 +25,10 @@ const patchOneTemp = async (req, res) => {
   res.json(msg);
 };
 
-const deleteOneTemp = (req, res) => {
-
+const deleteOneTemp = async (req, res) => {
+  const tempId = req.params.tempId;
+  const status = tempsService.deleteOneTemp(tempId);
+  res.json(status);
 };
 
 module.exports = {

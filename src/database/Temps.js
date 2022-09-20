@@ -25,9 +25,20 @@ const patchOneTemp = async (tempId, tempPortion) => {
   } catch (e) {return ({status: `Temp ${tempId} not updated`})}
 }
 
+const deleteOneTemp = async (tempId) => {
+  try {
+    await Temps.destroy({
+      where: {id: tempId}
+    });
+    return ({status: `Temp ${tempId} deleted`});
+
+  } catch (e) {return ({status: `Temp ${tempId} could not be deleted`})}
+}
+
 module.exports = {
   getAllTemps,
   getOneTemp,
   postOneTemp,
-  patchOneTemp
+  patchOneTemp,
+  deleteOneTemp
 };

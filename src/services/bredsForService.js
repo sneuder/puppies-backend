@@ -4,20 +4,20 @@ const getAllBredsFor = async () => {
   return await BredsFor.getAllBredsFor();
 };
 
-const getOneBredFor = () => {
-
+const getOneBredFor = async (bredForId) => {
+  return await BredsFor.getOneBredFor(bredForId);
 };
 
-const postOneBredFor = () => {
-
+const postOneBredFor = async (newBredFor) => {
+  return await BredsFor.postOneBredFor(newBredFor);
 };
 
-const patchOneBredFor = () => {
-
+const patchOneBredFor = async (bredForPortion, bredForId) => {
+  return await BredsFor.patchOneBredFor(bredForPortion, bredForId);
 };
 
-const deleteOneBredFor = () => {
-
+const deleteOneBredFor = async (bredForId) => {
+  return await BredsFor.deleteOneBredFor(bredForId);
 };
 
 module.exports = {
