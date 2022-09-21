@@ -9,6 +9,4 @@ router.post('/breeds/newBreed', breedsControllers.postOneBreed);
 router.patch('/breeds/:breedId', breedsControllers.patchOneBreed);
 router.delete('/breeds/:breedId', breedsControllers.deleteOneBreed);
 
-
-
 module.exports = router;
