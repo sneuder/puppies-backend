@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const countriesControllers = require('../controllers/contriesControllers');
+const countriesControllers = require('../controllers/countriesControllers');
 
 router.get('/countries/allcountries', countriesControllers.getAllCountries);
 router.get('/countries/:countrydId', countriesControllers.getOneCountry);
