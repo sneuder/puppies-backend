@@ -5,8 +5,10 @@ const getAllCountries = async () => {
   return await Countries.findAll();
 };
 
-const getOneCountry = () => {
-
+const getOneCountry = async (countryId) => {
+  try {
+    return await Countries.findByPk(countryId)
+  } catch(e) {return {status: 'Country not found'}}
 };
 
 const postOneCountry = () => {

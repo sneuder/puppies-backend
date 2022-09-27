@@ -5,8 +5,10 @@ const getAllCountries = async (req, res) => {
   res.json(allCountries);
 };
 
-const getOneCountry = (req, res) => {
-
+const getOneCountry = async (req, res) => {
+  const countryId = req.params.countrydId;
+  const country = await countriesService.getOneCountry(countryId);
+  res.json(country);
 };
 
 const postOneCountry = (req, res) => {

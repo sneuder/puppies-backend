@@ -4,8 +4,8 @@ const getAllCountries = async () => {
   return await Countries.getAllCountries();
 };
 
-const getOneCountry = () => {
-
+const getOneCountry =  async (countryId) => {
+  return await Countries.getOneCountry(countryId);
 };
 
 const postOneCountry = () => {
