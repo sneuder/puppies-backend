@@ -16,8 +16,8 @@ const patchOneCountry = async (countryPortion, countrydId) => {
   return await Countries.patchOneCountry(countryPortion, countrydId);
 };
 
-const deleteOneCountry = () => {
-
+const deleteOneCountry = async (countrydId) => {
+  return await Countries.deleteOneCountry(countrydId);
 };
 
 module.exports = {

@@ -25,8 +25,10 @@ const patchOneCountry = async (req, res) => {
   res.json(updatedCountry);
 };
 
-const deleteOneCountry = (req, res) => {
-
+const deleteOneCountry = async (req, res) => {
+  const countrydId = req.params.countryId;
+  const status = await countriesService.deleteOneCountry(countrydId);
+  res.json(status);
 };
 
 module.exports = {

@@ -7,7 +7,7 @@ const getAllCountries = async () => {
 
 const getOneCountry = async (countryId) => {
   try {
-    return await Countries.findByPk(countryId)
+    return await Countries.findByPk(countryId)|| {status: `Country ${countryId} not found`}
   } catch(e) {return {status: 'Country not found'}}
 };
 
@@ -17,15 +17,18 @@ const postOneCountry = async (newCountry) => {
   } catch(e) {return {status: 'Country not created'}}
 };
 
-const patchOneCountry = (countryPortion, countryId) => {
+const patchOneCountry = async (countryPortion, countryId) => {
   try {
-    Countries.update(countryPortion, {where:{id: countryId}});
+    await Countries.update(countryPortion, {where:{id: countryId}});
     return {status: `Country ${countryId} updated`}
-  } catch(e) {{status: `Country ${countryId} not updated`}}
+  } catch(e) {return {status: `Country ${countryId} not updated`}}
 };
 
-const deleteOneCountry = () => {
-
+const deleteOneCountry = async (countryId) => {
+  try {
+    await Countries.destroy({where: {id: countryId}});
+    return {status: `Country ${countryId} deleted`}
+  } catch(e) {return {status: `Country ${countryId} not deleted`}}
 };
 
 module.exports = {
