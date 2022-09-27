@@ -1,7 +1,8 @@
-const Countries = require('../database/Countries');
+const sequelize = require('../db');
+const Countries = sequelize.models.countries;
 
 const getAllCountries = async () => {
-  return await Countries.getAllCountries();
+  return await Countries.findAll();
 };
 
 const getOneCountry = () => {
