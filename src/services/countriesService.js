@@ -8,12 +8,12 @@ const getOneCountry =  async (countryId) => {
   return await Countries.getOneCountry(countryId);
 };
 
-const postOneCountry = () => {
-
+const postOneCountry = async (newCountry) => {
+  return await Countries.postOneCountry(newCountry);
 };
 
-const patchOneCountry = () => {
-
+const patchOneCountry = async (countryPortion, countrydId) => {
+  return await Countries.patchOneCountry(countryPortion, countrydId);
 };
 
 const deleteOneCountry = () => {

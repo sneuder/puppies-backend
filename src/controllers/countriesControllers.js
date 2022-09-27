@@ -11,12 +11,18 @@ const getOneCountry = async (req, res) => {
   res.json(country);
 };
 
-const postOneCountry = (req, res) => {
-
+const postOneCountry = async (req, res) => {
+  const newCountry = req.body;
+  const newPostedCountry = await countriesService.postOneCountry(newCountry);
+  res.json(newPostedCountry);
 };
 
-const patchOneCountry = (req, res) => {
+const patchOneCountry = async (req, res) => {
+  const countryPortion = req.body;
+  const countryId = req.params.countryId;
 
+  const updatedCountry = await countriesService.patchOneCountry(countryPortion, countryId);
+  res.json(updatedCountry);
 };
 
 const deleteOneCountry = (req, res) => {

@@ -11,12 +11,17 @@ const getOneCountry = async (countryId) => {
   } catch(e) {return {status: 'Country not found'}}
 };
 
-const postOneCountry = () => {
-
+const postOneCountry = async (newCountry) => {
+  try {
+    return await Countries.create(newCountry);
+  } catch(e) {return {status: 'Country not created'}}
 };
 
-const patchOneCountry = () => {
-
+const patchOneCountry = (countryPortion, countryId) => {
+  try {
+    Countries.update(countryPortion, {where:{id: countryId}});
+    return {status: `Country ${countryId} updated`}
+  } catch(e) {{status: `Country ${countryId} not updated`}}
 };
 
 const deleteOneCountry = () => {
