@@ -6,12 +6,15 @@ const Database = require('../database/Database');
 // post database
 const postDatabase = async () => {
   const allDogs =  await axiosRequest('GET', '/breeds');
-  
   await Database.deleteDatabase();
-  Database.postDatabaseAttributes(allDogs);
 
-  const formatedDogs = formating.postDogs(allDogs);
-  return await Database.postDatabase(formatedDogs);
+  allDogs.forEach(dog => {
+    const formatedDog = formating.postDog(dog);
+    Database.postDatabase(formatedDog);
+  });
+  
+  // Get all dogs from DATABASE not from API
+  return allDogs;
 };
 
 // remove
