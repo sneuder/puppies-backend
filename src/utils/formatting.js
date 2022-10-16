@@ -1,42 +1,43 @@
+const attributes = ["temperament", "breed_group", "bred_for", "origin"];
+
 const postDog = (dog) => {
+  return {
+    formatedDog: formatDog(dog),
+    attributes: postAttributes(dog),
+  };
+};
+
+const formatDog = (dog) => {
   return {
     id: dog.id,
     name: dog.name,
     life_span: dog.life_span,
-    image: dog.image.url
-  }
+    image: dog.image.url,
+  };
 };
 
-const postDogs = (dogs) => {
-  return dogs.map(dog => {
-    return {
-      id: dog.id,
-      name: dog.name,
-      life_span: dog.life_span,
-      image: dog.image.url
-    }
-  });
-};
+const postAttributes = (dog) => {
+  let attrs = {
+    "temperament": [],
+    "breed_group": [],
+    "bred_for": [],
+    "origin": []
+  };
 
-const postAttributes = (dogs, attribute) => {
-  let attrs = [];
-
-  // filterting to have no repeated information
-  dogs.forEach(dog => {
-    if (dog[attribute] && dog[attribute] !== ''){
+  attributes.forEach((attribute) => {
+    if (dog[attribute] && dog[attribute] !== "") {
       const dogAttrs = dog[attribute].replace(/,/g, "").split(" ");
-      dogAttrs.forEach(dogAttr => !attrs.includes(dogAttr) && attrs.unshift(dogAttr));
+      dogAttrs.forEach(
+        (dogAttr) =>
+          !attrs[attribute].includes(dogAttr) &&
+          attrs[attribute].unshift(dogAttr)
+      );
     }
   });
 
-  // formatting data
-  return attrs.map(atrr => {
-    return {[attribute]: atrr}
-  });
-}
+  return attrs;
+};
 
 module.exports = {
   postDog,
-  postDogs,
-  postAttributes
 };
