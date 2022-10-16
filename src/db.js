@@ -1,3 +1,4 @@
+const associationsPuppies = require('./models/associations/index');
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('puppies', 'postgres', 'postgres', {
@@ -12,5 +13,8 @@ requireModels.forEach( requiredModel => {
   const model = require(`./models/${requiredModel}`);
   model(sequelize);
 });
+
+// associations
+associationsPuppies(sequelize);
 
 module.exports = sequelize;
