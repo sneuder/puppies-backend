@@ -27,11 +27,7 @@ const postAttributes = (dog) => {
   attributes.forEach((attribute) => {
     if (dog[attribute] && dog[attribute] !== "") {
       const dogAttrs = dog[attribute].replace(/,/g, "").split(" ");
-      dogAttrs.forEach(
-        (dogAttr) =>
-          !attrs[attribute].includes(dogAttr) &&
-          attrs[attribute].unshift(dogAttr)
-      );
+      dogAttrs.forEach((dogAttr) => attrs[attribute].unshift(dogAttr));
     }
   });
 
