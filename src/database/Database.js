@@ -1,42 +1,31 @@
-const sequelize = require('../db');
-const formating = require('../utils/formatting');
+const sequelize = require("../db");
 
 const Dogs = sequelize.models.dogs;
-const attributes = {
-  'temperament': sequelize.models.temps,
-  'breed_group': sequelize.models.breeds,
-  'bred_for': sequelize.models.bredsfors,
-  'origin': sequelize.models.countries
-};
+const setAssociations = require('./utils/setAssociations');
+const attrModels = require('../constants/models');
 
-// Delete de data base and then populate it
-const postDatabase = async (dogs) => {
-  return await Dogs.bulkCreate(dogs);
-};
+const postDatabase = async (dog) => {
+  const postedDog = await Dogs.create(dog.formatedDog);
 
-// Add all information in common related to dogs
-const postDatabaseAttributes = (dogs) => {
-  const attrKeys = Object.keys(attributes);
-  attrKeys.forEach(async attrKey => {
-    try {
-      const formatedAttributes = formating.postAttributes(dogs, attrKey);
-      await attributes[attrKey].bulkCreate(formatedAttributes);
-    } catch (e) {console.log(e)}
-  });
+  setAssociations.temps(postedDog, dog.attributes.temperament);
+  setAssociations.breeds(postedDog, dog.attributes.breed_group);
+  setAssociations.bredsfor(postedDog, dog.attributes.bred_for);
+  setAssociations.countries(postedDog, dog.attributes.origin);
+
+  return postedDog;
 };
 
 // destroy all data in each table
 const deleteDatabase = async () => {
-  await Dogs.destroy({truncate: true});
+  await Dogs.destroy({ truncate: true, cascade: true });
 
-  const attrKeys = Object.keys(attributes);
-  attrKeys.forEach(async attrKey => {
-    await attributes[attrKey].destroy({truncate: true});
+  const attrKeys = Object.keys(attrModels);
+  attrKeys.forEach(async (attrKey) => {
+    await attrModels[attrKey].destroy({ truncate: true, cascade: true });
   });
 };
 
 module.exports = {
   postDatabase,
-  postDatabaseAttributes,
-  deleteDatabase 
+  deleteDatabase,
 };
