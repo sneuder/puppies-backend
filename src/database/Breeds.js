@@ -1,55 +1,63 @@
-const sequelize = require('../db');
+const message = require("../utils/messages");
+const sequelize = require("../db");
 const Breeds = sequelize.models.breeds;
 
 const getAllBreeds = async () => {
-  return await Breeds.findAll();
+  try {
+    return (await Breeds.findAll()) || message.noRecords("Breeds");
+  } catch (e) {
+    return message.error;
+  }
 };
 
 const getOneBreed = async (breedId) => {
   try {
-    return await Breeds.findByPk(breedId) || {status: 'Breed not found'};
-  } catch (e) {return ({status: 'Breed not found'})}
+    return (
+      (await Breeds.findByPk(breedId)) || message.noRecord("Breeds", breedId)
+    );
+  } catch (e) {
+    return message.error;
+  }
 };
 
 const postOneBreed = async (newBreed) => {
   try {
     return await Breeds.create(newBreed);
-  } catch(e) {
-    console.log(e);
-    return {status: 'Breed already exits'}
+  } catch (e) {
+    return message.error;
   }
 };
 
 const patchOneBreed = async (breedPortion, breedId) => {
   try {
-    await Breeds.update(
-      breedPortion, {
-        where: {
-          id: breedId
-        }
-      }
-    );
-    return ({status: `Breed ${breedId} updated`});
-    
-  } catch(e) {return ({status: `Breed ${breedId} with no updating`});}
-}
+    await Breeds.update(breedPortion, {
+      where: {
+        id: breedId,
+      },
+    });
+    return message.updatedRecord("Breed", breedId);
+  } catch (e) {
+    return message.error;
+  }
+};
 
 const deleteOneDog = async (breedId) => {
   try {
     await Breeds.destroy({
       where: {
-        id: breedId
-      }
+        id: breedId,
+      },
     });
-    return ({status: `Breed ${breedId} deleted`});
-  } catch(e) {return ({status: `Breed ${breedId} not deleted`})}
-}
+    return message.deletedRecord("Breed", breedId);
+  } catch (e) {
+    return message.deletedNoRecord("Breed", breedId);
+  }
+};
 
 module.exports = {
   getAllBreeds,
   getOneBreed,
   postOneBreed,
   patchOneBreed,
-  deleteOneDog
-}
-
+  deleteOneDog,
+};
