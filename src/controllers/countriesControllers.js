@@ -1,4 +1,4 @@
-const countriesService = require('../services/countriesService');
+const countriesService = require("../services/countriesService");
 
 const getAllCountries = async (req, res) => {
   const allCountries = await countriesService.getAllCountries();
@@ -21,7 +21,10 @@ const patchOneCountry = async (req, res) => {
   const countryPortion = req.body;
   const countryId = req.params.countryId;
 
-  const updatedCountry = await countriesService.patchOneCountry(countryPortion, countryId);
+  const updatedCountry = await countriesService.patchOneCountry(
+    countryPortion,
+    countryId
+  );
   res.json(updatedCountry);
 };
 
@@ -36,5 +39,5 @@ module.exports = {
   getOneCountry,
   postOneCountry,
   patchOneCountry,
-  deleteOneCountry
+  deleteOneCountry,
 };

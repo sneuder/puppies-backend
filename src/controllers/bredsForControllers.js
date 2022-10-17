@@ -1,4 +1,4 @@
-const bredsForService = require('../services/bredsForService');
+const bredsForService = require("../services/bredsForService");
 
 const getAllBredsFor = async (req, res) => {
   const allBredsFor = await bredsForService.getAllBredsFor();
@@ -21,7 +21,10 @@ const patchOneBredFor = async (req, res) => {
   const bredForPortion = req.body;
   const bredForId = req.params.bredForId;
 
-  const updatedBredFor = await bredsForService.patchOneBredFor(bredForPortion, bredForId);
+  const updatedBredFor = await bredsForService.patchOneBredFor(
+    bredForPortion,
+    bredForId
+  );
   res.json(updatedBredFor);
 };
 
@@ -36,5 +39,5 @@ module.exports = {
   getOneBredFor,
   postOneBredFor,
   patchOneBredFor,
-  deleteOneBredFor
+  deleteOneBredFor,
 };

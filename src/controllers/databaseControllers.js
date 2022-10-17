@@ -1,20 +1,16 @@
-const databaseService = require('../services/databaseService');
+const databaseService = require("../services/databaseService");
 
-const postDatabase = async(req, res) => {
-  try {
-    const allDogs = await databaseService.postDatabase();
-    res.json(allDogs);
-  } catch(e) {
-    res.send('Dogs not found on api to populate');
-  }
+const postDatabase = async (req, res) => {
+  const allDogs = await databaseService.postDatabase();
+  res.json(allDogs);
 };
 
 const deleteDatabase = (req, res) => {
   databaseService.deleteDatabase();
-  res.send('Unpopulated Database');
+  res.send("Unpopulated Database");
 };
 
 module.exports = {
   postDatabase,
-  deleteDatabase
-}
+  deleteDatabase,
+};

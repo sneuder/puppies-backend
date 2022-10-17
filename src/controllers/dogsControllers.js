@@ -1,6 +1,6 @@
-const dogsService = require('../services/dogsService');
+const dogsService = require("../services/dogsService");
 
-const getAllDogs = async(req, res) => {
+const getAllDogs = async (req, res) => {
   const allDogs = await dogsService.getAllDogs();
   res.json(allDogs);
 };
@@ -36,5 +36,5 @@ module.exports = {
   getOneDog,
   postOneDog,
   patchOneDog,
-  deleteOneDog
-}
+  deleteOneDog,
+};

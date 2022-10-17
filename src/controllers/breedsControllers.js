@@ -1,4 +1,4 @@
-const breedsService = require('../services/breedsService');
+const breedsService = require("../services/breedsService");
 
 const getAllBreeds = async (req, res) => {
   const allBreeds = await breedsService.getAllBreeds();
@@ -20,7 +20,7 @@ const postOneBreed = async (req, res) => {
 const patchOneBreed = async (req, res) => {
   const breedPortion = req.body;
   const breedId = req.params.breedId;
-  
+
   const updatedBreed = await breedsService.patchOneBreed(breedPortion, breedId);
   res.json(updatedBreed);
 };
@@ -36,5 +36,5 @@ module.exports = {
   getOneBreed,
   postOneBreed,
   patchOneBreed,
-  deleteOneBreed
+  deleteOneBreed,
 };

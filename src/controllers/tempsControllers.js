@@ -1,4 +1,4 @@
-const tempsService = require('../services/tempsService');
+const tempsService = require("../services/tempsService");
 
 const getAllTemps = async (req, res) => {
   const allTemps = await tempsService.getAllTemps();
@@ -20,7 +20,7 @@ const postOneTemp = async (req, res) => {
 const patchOneTemp = async (req, res) => {
   const tempId = req.params.tempId;
   const tempPortion = req.body;
-  
+
   const msg = await tempsService.patchOneTemp(tempId, tempPortion);
   res.json(msg);
 };
@@ -36,5 +36,5 @@ module.exports = {
   getOneTemp,
   postOneTemp,
   patchOneTemp,
-  deleteOneTemp
+  deleteOneTemp,
 };
