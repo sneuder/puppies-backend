@@ -1,48 +1,54 @@
-const sequelize = require('../db');
-const formating = require('../utils/formatting');
-
+const message = require("../utils/messages");
+const sequelize = require("../db");
 const Dogs = sequelize.models.dogs;
 
 const getAllDogs = async () => {
-  return await Dogs.findAll();
-}
+  try {
+    return (await Dogs.findAll()) || message.noRecords("Dogs");
+  } catch (e) {
+    return message.error;
+  }
+};
 
 const getOneDog = async (dogId) => {
-  return await Dogs.findByPk(dogId);
-}
+  try {
+    return (await Dogs.findByPk(dogId)) || message.noRecord("Dog", dogId);
+  } catch (e) {
+    return message.error;
+  }
+};
 
 const postOneDog = async (dog) => {
-  return await Dogs.create(dog);
+  try {
+    return await Dogs.create(dog);
+  } catch (e) {
+    return message.error;
+  }
 };
 
 const patchOneDog = async (dogPortion, dogId) => {
   try {
-    await Dogs.update(
-      dogPortion, {
+    await Dogs.update(dogPortion, {
       where: {
-        id: dogId
-      }
+        id: dogId,
+      },
     });
-    return ({status: `Dog ${dogId} updated`});
-     
+    return message.updatedRecord("Dog", dogId);
   } catch (e) {
-    console.log(e);
-    return ({status: `Dog ${dogId} without updating`});
-  };
+    return message.updatedNoRecord("Dog", dogId);
+  }
 };
 
 const deleteOneDog = async (dogId) => {
   try {
     await Dogs.destroy({
       where: {
-        id: dogId
-      }
+        id: dogId,
+      },
     });
-    return ({status: `Dog ${dogId} deleted`});
-
-  } catch(e){
-    console.log(e);
-    return ({status: `Dog ${dogId} not deleted`})
+    return message.deletedRecord("Dog", dogId);
+  } catch (e) {
+    return message.deletedNoRecord("Dog", dogId);
   }
 };
 
@@ -51,5 +57,5 @@ module.exports = {
   getOneDog,
   postOneDog,
   patchOneDog,
-  deleteOneDog
+  deleteOneDog,
 };
