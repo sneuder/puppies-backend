@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 
 // routes
-const database = require('./routes/database');
-const dogs = require('./routes/dogs')
-const breeds = require('./routes/breeds');
-const temps = require('./routes/temps');
-const bredsFor = require('./routes/bredsFor');
-const countries = require('./routes/countries');
+const database = require("./routes/database");
+const dogs = require("./routes/dogs");
+const breeds = require("./routes/breeds");
+const temps = require("./routes/temps");
+const bredsFor = require("./routes/bredsFor");
+const countries = require("./routes/countries");
 
 const app = express();
 
@@ -14,11 +14,11 @@ const app = express();
 app.use(express.json());
 
 // adding routes
-app.use('/api', database);
-app.use('/api', dogs);
-app.use('/api', breeds);
-app.use('/api', bredsFor);
-app.use('/api', temps);
-app.use('/api', countries);
+app.use("/api", database);
+app.use("/api", dogs);
+app.use("/api", breeds);
+app.use("/api", bredsFor);
+app.use("/api", temps);
+app.use("/api", countries);
 
 module.exports = app;

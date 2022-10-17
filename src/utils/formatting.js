@@ -18,10 +18,10 @@ const formatDog = (dog) => {
 
 const postAttributes = (dog) => {
   let attrs = {
-    "temperament": [],
-    "breed_group": [],
-    "bred_for": [],
-    "origin": []
+    temperament: [],
+    breed_group: [],
+    bred_for: [],
+    origin: [],
   };
 
   attributes.forEach((attribute) => {
