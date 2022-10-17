@@ -1,18 +1,18 @@
-const axiosRequest = require('../utils/axiosRequest');
-const formating = require('../utils/formatting');
+const axiosRequest = require("../utils/axiosRequest");
+const formating = require("../utils/formatting");
 
-const Database = require('../database/Database');
+const Database = require("../database/Database");
 
 // post database
 const postDatabase = async () => {
-  const allDogs =  await axiosRequest('GET', '/breeds');
+  const allDogs = await axiosRequest("GET", "/breeds");
   await Database.deleteDatabase();
 
-  allDogs.forEach(dog => {
+  allDogs.forEach((dog) => {
     const formatedDog = formating.postDog(dog);
     Database.postDatabase(formatedDog);
   });
-  
+
   // Get all dogs from DATABASE not from API
   return allDogs;
 };
@@ -24,5 +24,5 @@ const deleteDatabase = () => {
 
 module.exports = {
   postDatabase,
-  deleteDatabase
-}
+  deleteDatabase,
+};

@@ -1,4 +1,4 @@
-const Breeds = require('../database/Breeds');
+const Breeds = require("../database/Breeds");
 
 const getAllBreeds = async () => {
   return await Breeds.getAllBreeds();
@@ -25,5 +25,5 @@ module.exports = {
   getOneBreed,
   postOneBreed,
   patchOneBreed,
-  deleteOneBreed
+  deleteOneBreed,
 };

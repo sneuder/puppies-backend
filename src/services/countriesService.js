@@ -1,10 +1,10 @@
-const Countries = require('../database/Countries');
+const Countries = require("../database/Countries");
 
 const getAllCountries = async () => {
   return await Countries.getAllCountries();
 };
 
-const getOneCountry =  async (countryId) => {
+const getOneCountry = async (countryId) => {
   return await Countries.getOneCountry(countryId);
 };
 
@@ -25,5 +25,5 @@ module.exports = {
   getOneCountry,
   postOneCountry,
   patchOneCountry,
-  deleteOneCountry
+  deleteOneCountry,
 };

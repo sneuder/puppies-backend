@@ -1,4 +1,4 @@
-const Temps = require('../database/Temps');
+const Temps = require("../database/Temps");
 
 const getAllTemps = async () => {
   return await Temps.getAllTemps();
@@ -13,7 +13,7 @@ const postOneTemp = async (temp) => {
 };
 
 const patchOneTemp = async (tempId, tempPortion) => {
-  return await Temps.patchOneTemp(tempId, tempPortion)
+  return await Temps.patchOneTemp(tempId, tempPortion);
 };
 
 const deleteOneTemp = async (tempId) => {
@@ -25,5 +25,5 @@ module.exports = {
   getOneTemp,
   postOneTemp,
   patchOneTemp,
-  deleteOneTemp
+  deleteOneTemp,
 };
