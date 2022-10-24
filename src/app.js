@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 // get routes
+const newUser = require("./routes/newUser");
 const database = require("./routes/database");
 const dogs = require("./routes/dogs");
 const breeds = require("./routes/breeds");
@@ -16,9 +17,9 @@ const auth = require("./middlewares/auth");
 app.use(express.json());
 
 // middlewares
-app.use(auth);
 
 // adding routes
+app.use("/api", newUser);
 app.use("/api", database);
 app.use("/api", dogs);
 app.use("/api", breeds);
