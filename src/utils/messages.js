@@ -1,5 +1,5 @@
 const error = {
-  status: "Something went wrong",
+  status: 'Something went wrong',
 };
 
 const noRecords = (recordType) => {

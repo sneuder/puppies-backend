@@ -1,4 +1,4 @@
-const Temps = require("../database/Temps");
+const Temps = require('../database/Temps');
 
 const getAllTemps = async () => {
   return await Temps.getAllTemps();

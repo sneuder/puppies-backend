@@ -1,4 +1,4 @@
-const databaseService = require("../services/databaseService");
+const databaseService = require('../services/databaseService');
 
 const postDatabase = async (req, res) => {
   const allDogs = await databaseService.postDatabase();
@@ -7,7 +7,7 @@ const postDatabase = async (req, res) => {
 
 const deleteDatabase = (req, res) => {
   databaseService.deleteDatabase();
-  res.send("Unpopulated Database");
+  res.send('Unpopulated Database');
 };
 
 module.exports = {

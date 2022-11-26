@@ -1,11 +1,11 @@
-const axiosRequest = require("../utils/axiosRequest");
-const formating = require("../utils/formatting");
+const axiosRequest = require('../utils/axiosRequest');
+const formating = require('../utils/formatting');
 
-const Database = require("../database/Database");
+const Database = require('../database/Database');
 
 // post database
 const postDatabase = async () => {
-  const allDogs = await axiosRequest("GET", "/breeds");
+  const allDogs = await axiosRequest('GET', '/breeds');
   await Database.deleteDatabase();
 
   allDogs.forEach((dog) => {

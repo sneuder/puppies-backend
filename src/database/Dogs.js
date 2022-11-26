@@ -1,10 +1,10 @@
-const message = require("../utils/messages");
-const sequelize = require("../db");
+const message = require('../utils/messages');
+const sequelize = require('../db');
 const Dogs = sequelize.models.dogs;
 
 const getAllDogs = async () => {
   try {
-    return (await Dogs.findAll()) || message.noRecords("Dogs");
+    return (await Dogs.findAll()) || message.noRecords('Dogs');
   } catch (e) {
     return message.error;
   }
@@ -12,7 +12,7 @@ const getAllDogs = async () => {
 
 const getOneDog = async (dogId) => {
   try {
-    return (await Dogs.findByPk(dogId)) || message.noRecord("Dog", dogId);
+    return (await Dogs.findByPk(dogId)) || message.noRecord('Dog', dogId);
   } catch (e) {
     return message.error;
   }
@@ -33,9 +33,9 @@ const patchOneDog = async (dogPortion, dogId) => {
         id: dogId,
       },
     });
-    return message.updatedRecord("Dog", dogId);
+    return message.updatedRecord('Dog', dogId);
   } catch (e) {
-    return message.updatedNoRecord("Dog", dogId);
+    return message.updatedNoRecord('Dog', dogId);
   }
 };
 
@@ -46,9 +46,9 @@ const deleteOneDog = async (dogId) => {
         id: dogId,
       },
     });
-    return message.deletedRecord("Dog", dogId);
+    return message.deletedRecord('Dog', dogId);
   } catch (e) {
-    return message.deletedNoRecord("Dog", dogId);
+    return message.deletedNoRecord('Dog', dogId);
   }
 };
 

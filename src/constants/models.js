@@ -1,4 +1,4 @@
-const sequelize = require("../db");
+const sequelize = require('../db');
 
 module.exports = {
   temperament: sequelize.models.temps,

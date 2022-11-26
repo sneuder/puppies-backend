@@ -1,4 +1,4 @@
-const countriesService = require("../services/countriesService");
+const countriesService = require('../services/countriesService');
 
 const getAllCountries = async (req, res) => {
   const allCountries = await countriesService.getAllCountries();

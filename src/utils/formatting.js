@@ -1,4 +1,4 @@
-const attributes = ["temperament", "breed_group", "bred_for", "origin"];
+const attributes = ['temperament', 'breed_group', 'bred_for', 'origin'];
 
 const postDog = (dog) => {
   return {
@@ -25,8 +25,8 @@ const postAttributes = (dog) => {
   };
 
   attributes.forEach((attribute) => {
-    if (dog[attribute] && dog[attribute] !== "") {
-      const dogAttrs = dog[attribute].replace(/,/g, "").split(" ");
+    if (dog[attribute] && dog[attribute] !== '') {
+      const dogAttrs = dog[attribute].replace(/,/g, '').split(' ');
       dogAttrs.forEach((dogAttr) => attrs[attribute].unshift(dogAttr));
     }
   });
