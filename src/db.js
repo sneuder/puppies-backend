@@ -1,8 +1,11 @@
 const associationsPuppies = require("./models/associations/index");
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize("puppies", "postgres", "postgres", {
-  host: "localhost",
+require("dotenv").config();
+const { HOST, DBNAME, USERDB, PASSWORDB } = process.env;
+
+const sequelize = new Sequelize(DBNAME, USERDB, PASSWORDB, {
+  host: HOST,
   dialect: "postgres",
   logging: false,
 });
