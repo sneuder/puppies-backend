@@ -4,7 +4,7 @@
   "description": "It has all the logic regarding to puppies app.",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node ./index.js",
     "dev": "nodemon ./index.js"
   },
   "repository": {
