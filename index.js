@@ -1,6 +1,10 @@
 require('dotenv').config();
 
-const app = require('./src/app');
+const app = require('express')();
+// add the routes and make their settings
+const addRoutes = require('./src/app');
+addRoutes(app);
+
 const sequelize = require('./src/db');
 
 // axios configuration
