@@ -1,31 +1,31 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
 
-const tempsControllers = require("../controllers/tempsControllers");
-const middlewaresAuth = require("../middlewares/auth");
+const tempsControllers = require('../controllers/tempsControllers');
+const middlewaresAuth = require('../middlewares/auth');
 
 router.get(
-  "/temps/allTemps",
+  '/temps/allTemps',
   middlewaresAuth.user,
   tempsControllers.getAllTemps
 );
 
-router.get("/temps/:tempId", middlewaresAuth.user, tempsControllers.getOneTemp);
+router.get('/temps/:tempId', middlewaresAuth.user, tempsControllers.getOneTemp);
 
 router.post(
-  "/temps/:tempId",
+  '/temps/:tempId',
   middlewaresAuth.user,
   tempsControllers.postOneTemp
 );
 
 router.patch(
-  "/temps/:tempId",
+  '/temps/:tempId',
   middlewaresAuth.user,
   tempsControllers.patchOneTemp
 );
 
 router.delete(
-  "/temps/:tempId",
+  '/temps/:tempId',
   middlewaresAuth.user,
   tempsControllers.deleteOneTemp
 );

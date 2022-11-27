@@ -1,4 +1,4 @@
-const breedsService = require("../services/breedsService");
+const breedsService = require('../services/breedsService');
 
 const getAllBreeds = async (req, res) => {
   const allBreeds = await breedsService.getAllBreeds();

@@ -1,4 +1,4 @@
-const bredsForService = require("../services/bredsForService");
+const bredsForService = require('../services/bredsForService');
 
 const getAllBredsFor = async (req, res) => {
   const allBredsFor = await bredsForService.getAllBredsFor();

@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/sneuder/puppies-backend#readme",
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0"
   },
   "dependencies": {
     "axios": "^0.27.2",

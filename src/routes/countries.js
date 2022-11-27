@@ -1,35 +1,35 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
 
-const countriesControllers = require("../controllers/countriesControllers");
-const middlewaresAuth = require("../middlewares/auth");
+const countriesControllers = require('../controllers/countriesControllers');
+const middlewaresAuth = require('../middlewares/auth');
 
 router.get(
-  "/countries/allcountries",
+  '/countries/allcountries',
   middlewaresAuth.user,
   countriesControllers.getAllCountries
 );
 
 router.get(
-  "/countries/:countrydId",
+  '/countries/:countrydId',
   middlewaresAuth.user,
   countriesControllers.getOneCountry
 );
 
 router.post(
-  "/countries/newCountry",
+  '/countries/newCountry',
   middlewaresAuth.user,
   countriesControllers.postOneCountry
 );
 
 router.patch(
-  "/countries/:countryId",
+  '/countries/:countryId',
   middlewaresAuth.user,
   countriesControllers.patchOneCountry
 );
 
 router.delete(
-  "/countries/:countryId",
+  '/countries/:countryId',
   middlewaresAuth.user,
   countriesControllers.deleteOneCountry
 );

@@ -1,4 +1,4 @@
-const BredsFor = require("../database/BredsFor");
+const BredsFor = require('../database/BredsFor');
 
 const getAllBredsFor = async () => {
   return await BredsFor.getAllBredsFor();

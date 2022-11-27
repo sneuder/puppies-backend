@@ -1,4 +1,4 @@
-const attrModels = require("../../constants/models");
+const attrModels = require('../../constants/models');
 
 const temps = async (postedDog, dogAttrs) => {
   dogAttrs.forEach(async (dogAttr) => {

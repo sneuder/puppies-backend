@@ -1,9 +1,9 @@
-const message = require("../utils/messages");
-const sequelize = require("../db");
+const message = require('../utils/messages');
+const sequelize = require('../db');
 
 const Dogs = sequelize.models.dogs;
-const setAssociations = require("./utils/setAssociations");
-const attrModels = require("../constants/models");
+const setAssociations = require('./utils/setAssociations');
+const attrModels = require('../constants/models');
 
 const postDatabase = async (dog) => {
   try {

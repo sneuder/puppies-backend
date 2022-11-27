@@ -1,10 +1,10 @@
-const message = require("../utils/messages");
-const sequelize = require("../db");
+const message = require('../utils/messages');
+const sequelize = require('../db');
 const Temps = sequelize.models.temps;
 
 const getAllTemps = async () => {
   try {
-    return (await Temps.findAll()) || message.noRecords("Temps");
+    return (await Temps.findAll()) || message.noRecords('Temps');
   } catch (e) {
     return message.error;
   }
@@ -12,7 +12,7 @@ const getAllTemps = async () => {
 
 const getOneTemp = async (tempId) => {
   try {
-    return (await Temps.findByPk(tempId)) || message.noRecord("Temp", tempId);
+    return (await Temps.findByPk(tempId)) || message.noRecord('Temp', tempId);
   } catch (e) {
     return message.error;
   }
@@ -31,7 +31,7 @@ const patchOneTemp = async (tempId, tempPortion) => {
     await Temps.update(tempPortion, {
       where: { id: tempId },
     });
-    return message.updatedRecord("Temp", tempId);
+    return message.updatedRecord('Temp', tempId);
   } catch (e) {
     return message.error;
   }
@@ -43,9 +43,9 @@ const deleteOneTemp = async (tempId) => {
       where: { id: tempId },
     });
 
-    return message.deletedRecord("Temp", tempId);
+    return message.deletedRecord('Temp', tempId);
   } catch (e) {
-    return message.deletedNoRecord("Temp", tempId);
+    return message.deletedNoRecord('Temp', tempId);
   }
 };
 

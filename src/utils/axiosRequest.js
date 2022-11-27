@@ -1,4 +1,4 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const axiosRequest = async (method, url) => {
   const res = await axios({

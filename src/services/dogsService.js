@@ -1,4 +1,4 @@
-const Database = require("../database/Dogs");
+const Database = require('../database/Dogs');
 
 const getAllDogs = async () => {
   return await Database.getAllDogs();

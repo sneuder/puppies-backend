@@ -1,35 +1,35 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
 
-const bredsForControllers = require("../controllers/bredsForControllers");
-const middlewaresAuth = require("../middlewares/auth");
+const bredsForControllers = require('../controllers/bredsForControllers');
+const middlewaresAuth = require('../middlewares/auth');
 
 router.get(
-  "/bredsfor/allBredsFor",
+  '/bredsfor/allBredsFor',
   middlewaresAuth.user,
   bredsForControllers.getAllBredsFor
 );
 
 router.get(
-  "/bredsfor/:bredForId",
+  '/bredsfor/:bredForId',
   middlewaresAuth.user,
   bredsForControllers.getOneBredFor
 );
 
 router.post(
-  "/bredsfor/newBredFor",
+  '/bredsfor/newBredFor',
   middlewaresAuth.user,
   bredsForControllers.postOneBredFor
 );
 
 router.patch(
-  "/bredsfor/:bredForId",
+  '/bredsfor/:bredForId',
   middlewaresAuth.user,
   bredsForControllers.patchOneBredFor
 );
 
 router.delete(
-  "/bredsfor/:bredForId",
+  '/bredsfor/:bredForId',
   middlewaresAuth.user,
   bredsForControllers.deleteOneBredFor
 );

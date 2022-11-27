@@ -1,4 +1,4 @@
-const Countries = require("../database/Countries");
+const Countries = require('../database/Countries');
 
 const getAllCountries = async () => {
   return await Countries.getAllCountries();
