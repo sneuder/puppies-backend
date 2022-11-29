@@ -11,7 +11,7 @@ const sequelize = new Sequelize(DBNAME, USERDB, PASSWORDB, {
 });
 
 // linking models to database
-const requireModels = ['Dogs', 'Temps', 'Countries', 'Breeds', 'BredsFor'];
+const requireModels = ['Dogs', 'Temps', 'Countries', 'Breeds'];
 requireModels.forEach((requiredModel) => {
   const model = require(`./models/${requiredModel}`);
   model(sequelize);

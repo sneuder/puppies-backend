@@ -9,10 +9,12 @@ const postDatabase = async (dog) => {
   try {
     const postedDog = await Dogs.create(dog.formatedDog);
 
-    setAssociations.temps(postedDog, dog.attributes.temperament);
-    setAssociations.breeds(postedDog, dog.attributes.breed_group);
-    setAssociations.bredsfor(postedDog, dog.attributes.bred_for);
-    setAssociations.countries(postedDog, dog.attributes.origin);
+    // make associations
+    const attributes = ['temperaments', 'breeds', 'countries'];
+    attributes.forEach((attribute) => {
+      if (dog.attributes[attribute])
+        setAssociations[attribute](postedDog, dog.attributes[attribute]);
+    });
 
     return postedDog;
   } catch (e) {

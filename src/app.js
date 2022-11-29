@@ -7,13 +7,12 @@ const database = require('./routes/database');
 const dogs = require('./routes/dogs');
 const breeds = require('./routes/breeds');
 const temps = require('./routes/temps');
-const bredsFor = require('./routes/bredsFor');
 const countries = require('./routes/countries');
 
 // adding routes
 const addRoutes = (app) => {
   const router = express.Router();
-  
+
   app.use(cors());
   app.use(express.json());
 
@@ -23,7 +22,6 @@ const addRoutes = (app) => {
   router.use('/', database);
   router.use('/', dogs);
   router.use('/', breeds);
-  router.use('/', bredsFor);
   router.use('/', temps);
   router.use('/', countries);
 };
