@@ -1,6 +1,6 @@
 require('dotenv').config();
-
 const app = require('express')();
+
 // add the routes and make their settings
 const addRoutes = require('./src/app');
 addRoutes(app);
@@ -13,4 +13,4 @@ axiosConfig();
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log('Server listening'));
-sequelize.sync();
+sequelize.sync({ force: true });

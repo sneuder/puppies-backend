@@ -1,4 +1,4 @@
-const attributes = ['temperament', 'breed_group', 'bred_for', 'origin'];
+const attributes = ['temperament', 'breed_group', 'origin'];
 
 const postDog = (dog) => {
   return {
@@ -7,27 +7,29 @@ const postDog = (dog) => {
   };
 };
 
+// Dependencies functions
+
 const formatDog = (dog) => {
   return {
     id: dog.id,
     name: dog.name,
-    life_span: dog.life_span,
+    lifespan: dog.life_span,
     image: dog.image.url,
   };
 };
 
 const postAttributes = (dog) => {
-  let attrs = {
-    temperament: [],
-    breed_group: [],
-    bred_for: [],
-    origin: [],
-  };
+  let attrs = {};
 
   attributes.forEach((attribute) => {
     if (dog[attribute] && dog[attribute] !== '') {
       const dogAttrs = dog[attribute].replace(/,/g, '').split(' ');
-      dogAttrs.forEach((dogAttr) => attrs[attribute].unshift(dogAttr));
+
+      if (attribute === 'origin') attribute = 'countries';
+      if (attribute === 'temperament') attribute = 'temperaments';
+      if (attribute === 'breed_group') attribute = 'breeds';
+
+      attrs[attribute] = dogAttrs;
     }
   });
 
