@@ -8,12 +8,11 @@ const postDatabase = async () => {
   const allDogs = await axiosRequest('GET', '/breeds');
   await Database.deleteDatabase();
 
-  allDogs.forEach((dog) => {
+  allDogs.forEach(async (dog) => {
     const formatedDog = formating.postDog(dog);
     Database.postDatabase(formatedDog);
   });
 
-  // Get all dogs from DATABASE not from API
   return allDogs;
 };
 
