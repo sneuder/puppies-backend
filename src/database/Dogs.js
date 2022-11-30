@@ -1,10 +1,13 @@
 const message = require('../utils/messages');
 const sequelize = require('../db');
+
 const Dogs = sequelize.models.dogs;
+const attrModels = Object.values(require('../constants/models'));
 
 const getAllDogs = async () => {
   try {
-    return (await Dogs.findAll()) || message.noRecords('Dogs');
+    const dogs = await Dogs.findAll({ include: attrModels });
+    return dogs || message.noRecords('Dogs');
   } catch (e) {
     return message.error;
   }
@@ -12,7 +15,11 @@ const getAllDogs = async () => {
 
 const getOneDog = async (dogId) => {
   try {
-    return (await Dogs.findByPk(dogId)) || message.noRecord('Dog', dogId);
+    let dog = await Dogs.findByPk(dogId, {
+      include: attrModels,
+    });
+
+    return dog || message.noRecord('Dog', dogId);
   } catch (e) {
     return message.error;
   }

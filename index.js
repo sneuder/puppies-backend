@@ -13,4 +13,5 @@ axiosConfig();
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log('Server listening'));
-sequelize.sync({ force: true });
+sequelize.sync();
+// sequelize.sync({ force: true });
