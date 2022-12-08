@@ -1,36 +1,33 @@
 const attrModels = require('../../constants/models');
 
-const temperaments = (postedDog, dogAttrs) => {
-  dogAttrs.forEach(async (dogAttr) => {
-    const [newRecord, oldRecord] = await attrModels.temperament.findOrCreate({
-      where: { temperament: dogAttr },
+const temperaments = async (postedDog, dogAttrs) => {
+  for (let i = 0; i < dogAttrs.length; i++) {
+    const [newRecord, created] = await attrModels.temperament.findOrCreate({
+      where: { temperament: dogAttrs[i] },
     });
 
     await postedDog.addTemps(newRecord);
-  });
+  }
 };
 
-const breeds = (postedDog, dogAttrs) => {
-  dogAttrs.forEach(async (dogAttr) => {
-    try {
-      const [newRecord, oldRecord] = await attrModels.breed_group.findOrCreate({
-        where: { breed_group: dogAttr },
-      });
-      await postedDog.addBreeds(newRecord);
-    } catch (e) {
-      // console.log(e);
-    }
-  });
+const breeds = async (postedDog, dogAttrs) => {
+  for (let i = 0; i < dogAttrs.length; i++) {
+    const [newRecord, created] = await attrModels.breed_group.findOrCreate({
+      where: { breed_group: dogAttrs[i] },
+    });
+
+    await postedDog.addBreeds(newRecord);
+  }
 };
 
-const countries = (postedDog, dogAttrs) => {
-  dogAttrs.forEach(async (dogAttr) => {
-    const [newRecord, oldRecord] = await attrModels.countries.findOrCreate({
-      where: { countries: dogAttr },
+const countries = async (postedDog, dogAttrs) => {
+  for (let i = 0; i < dogAttrs.length; i++) {
+    const [newRecord, created] = await attrModels.countries.findOrCreate({
+      where: { countries: dogAttrs[i] },
     });
 
     await postedDog.addCountries(newRecord);
-  });
+  }
 };
 
 module.exports = {

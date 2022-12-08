@@ -6,19 +6,20 @@ const setAssociations = require('./utils/setAssociations');
 
 const postDatabase = async (dog) => {
   const postedDog = await Dogs.create(dog.formatedDog);
-  console.log(dog.formatedDog.id);
   // make associations
-  // const attributes = ['temperaments', 'breeds', 'countries'];
-  // attributes.forEach(async (attribute) => {
-  //   if (dog.attributes[attribute])
-  //     await setAssociations[attribute](postedDog, dog.attributes[attribute]);
-  // });
+  const attributes = ['temperaments', 'breeds', 'countries'];
+  for (let i = 0; i < attributes.length; i++) {
+    if (dog.attributes[attributes[i]]) {
+      await setAssociations[attributes[i]](
+        postedDog,
+        dog.attributes[attributes[i]]
+      );
+    }
+  }
 };
 
 const getDatabase = async () => {
-  // const allDogs = await Dogs.findAll({ include: Object.values(attrModels) });
-  console.log('bitch');
-  const allDogs = await Dogs.findAll();
+  const allDogs = await Dogs.findAll({ include: Object.values(attrModels) });
   return allDogs;
 };
 
