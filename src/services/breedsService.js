@@ -1,11 +1,15 @@
 const Breeds = require('../database/Breeds');
 
-const getAllBreeds = async () => {
-  return await Breeds.getAllBreeds();
+const getAllBreeds = () => {
+  return Breeds.getAllBreeds().then((response) => {
+    return response;
+  });
 };
 
-const getOneBreed = async (breedId) => {
-  return await Breeds.getOneBreed(breedId);
+const getOneBreed = (breedId) => {
+  return Breeds.getOneBreed(breedId).then((response) => {
+    return response;
+  });
 };
 
 const postOneBreed = async (newBreed) => {

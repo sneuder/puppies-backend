@@ -1,14 +1,17 @@
 const breedsService = require('../services/breedsService');
 
-const getAllBreeds = async (req, res) => {
-  const allBreeds = await breedsService.getAllBreeds();
-  res.json(allBreeds);
+const getAllBreeds = (req, res) => {
+  breedsService.getAllBreeds().then((response) => {
+    res.json(response);
+  });
+  // res.json({a: "a"});
 };
 
-const getOneBreed = async (req, res) => {
+const getOneBreed = (req, res) => {
   const breedId = req.params.breedId;
-  const breed = await breedsService.getOneBreed(breedId);
-  res.json(breed);
+  breedsService.getOneBreed(breedId).then((response) => {
+    res.json(response);
+  });
 };
 
 const postOneBreed = async (req, res) => {
