@@ -4,7 +4,6 @@ const getAllBreeds = (req, res) => {
   breedsService.getAllBreeds().then((response) => {
     res.json(response);
   });
-  // res.json({a: "a"});
 };
 
 const getOneBreed = (req, res) => {
@@ -14,24 +13,27 @@ const getOneBreed = (req, res) => {
   });
 };
 
-const postOneBreed = async (req, res) => {
+const postOneBreed = (req, res) => {
   const newBreed = req.body;
-  const newPostedBreed = await breedsService.postOneBreed(newBreed);
-  res.json(newPostedBreed);
+  breedsService.postOneBreed(newBreed).then((newPostedBreed) => {
+    res.json(newPostedBreed);
+  });
 };
 
-const patchOneBreed = async (req, res) => {
+const patchOneBreed = (req, res) => {
   const breedPortion = req.body;
   const breedId = req.params.breedId;
 
-  const updatedBreed = await breedsService.patchOneBreed(breedPortion, breedId);
-  res.json(updatedBreed);
+  breedsService.patchOneBreed(breedPortion, breedId).then((updatedBreed) => {
+    res.json(updatedBreed);
+  });
 };
 
-const deleteOneBreed = async (req, res) => {
+const deleteOneBreed = (req, res) => {
   const breedId = req.params.breedId;
-  const status = await breedsService.deleteOneBreed(breedId);
-  res.json(status);
+  breedsService.deleteOneBreed(breedId).then((status) => {
+    res.json(status);
+  });
 };
 
 module.exports = {
