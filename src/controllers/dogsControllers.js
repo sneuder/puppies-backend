@@ -1,34 +1,39 @@
 const dogsService = require('../services/dogsService');
 
-const getAllDogs = async (req, res) => {
-  const allDogs = await dogsService.getAllDogs();
-  res.json(allDogs);
+const getAllDogs = (req, res) => {
+  dogsService.getAllDogs().then((allDogs) => {
+    res.json(allDogs);
+  });
 };
 
-const getOneDog = async (req, res) => {
+const getOneDog = (req, res) => {
   const dogId = req.params.dogId;
-  const dog = await dogsService.getOneDog(dogId);
-  res.json(dog);
+  dogsService.getOneDog(dogId).then((dog) => {
+    res.json(dog);
+  });
 };
 
-const postOneDog = async (req, res) => {
+const postOneDog = (req, res) => {
   const newDog = req.body;
-  const dog = await dogsService.postOneDog(newDog);
-  res.json(dog);
+  dogsService.postOneDog(newDog).then((dog) => {
+    res.json(dog);
+  });
 };
 
-const patchOneDog = async (req, res) => {
+const patchOneDog = (req, res) => {
   const dogPortion = req.body;
   const dogId = req.params.dogId;
 
-  const dog = await dogsService.patchOneDog(dogPortion, dogId);
-  res.json(dog);
+  dogsService.patchOneDog(dogPortion, dogId).then((dog) => {
+    res.json(dog);
+  });
 };
 
-const deleteOneDog = async (req, res) => {
+const deleteOneDog = (req, res) => {
   const dogId = req.params.dogId;
-  const status = await dogsService.deleteOneDog(dogId);
-  res.json(status);
+  dogsService.deleteOneDog(dogId).then((status) => {
+    res.json(status);
+  });
 };
 
 module.exports = {

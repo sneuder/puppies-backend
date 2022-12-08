@@ -1,23 +1,23 @@
 const Breeds = require('../database/Breeds');
 
-const getAllBreeds = async () => {
-  return await Breeds.getAllBreeds();
+const getAllBreeds = () => {
+  return Breeds.getAllBreeds();
 };
 
-const getOneBreed = async (breedId) => {
-  return await Breeds.getOneBreed(breedId);
+const getOneBreed = (breedId) => {
+  return Breeds.getOneBreed(breedId);
 };
 
-const postOneBreed = async (newBreed) => {
-  return await Breeds.postOneBreed(newBreed);
+const postOneBreed = (newBreed) => {
+  return Breeds.postOneBreed(newBreed);
 };
 
-const patchOneBreed = async (breedPortion, breedId) => {
-  return await Breeds.patchOneBreed(breedPortion, breedId);
+const patchOneBreed = (breedPortion, breedId) => {
+  return Breeds.patchOneBreed(breedPortion, breedId);
 };
 
-const deleteOneBreed = async (breedId) => {
-  return await Breeds.deleteOneDog(breedId);
+const deleteOneBreed = (breedId) => {
+  return Breeds.deleteOneDog(breedId);
 };
 
 module.exports = {
