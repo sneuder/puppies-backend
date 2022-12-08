@@ -1,4 +1,3 @@
-const message = require('../utils/messages');
 const sequelize = require('../db');
 
 const Dogs = sequelize.models.dogs;
@@ -6,26 +5,22 @@ const attrModels = require('../constants/models');
 const setAssociations = require('./utils/setAssociations');
 
 const postDatabase = async (dog) => {
-  try {
-    const postedDog = await Dogs.create(dog.formatedDog);
-
-    // make associations
-    const attributes = ['temperaments', 'breeds', 'countries'];
-    attributes.forEach(async (attribute) => {
-      if (dog.attributes[attribute])
-        setAssociations[attribute](postedDog, dog.attributes[attribute]);
-    });
-  } catch (e) {
-    return message.error;
+  const postedDog = await Dogs.create(dog.formatedDog);
+  // make associations
+  const attributes = ['temperaments', 'breeds', 'countries'];
+  for (let i = 0; i < attributes.length; i++) {
+    if (dog.attributes[attributes[i]]) {
+      await setAssociations[attributes[i]](
+        postedDog,
+        dog.attributes[attributes[i]]
+      );
+    }
   }
 };
 
 const getDatabase = async () => {
-  try {
-    return await Dogs.findAll({ include: Object.values(attrModels) });
-  } catch (e) {
-    console.log(e);
-  }
+  const allDogs = await Dogs.findAll({ include: Object.values(attrModels) });
+  return allDogs;
 };
 
 // destroy all data in each table

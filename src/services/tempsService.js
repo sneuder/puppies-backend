@@ -1,23 +1,23 @@
 const Temps = require('../database/Temps');
 
-const getAllTemps = async () => {
-  return await Temps.getAllTemps();
+const getAllTemps = () => {
+  return Temps.getAllTemps();
 };
 
-const getOneTemp = async (tempId) => {
-  return await Temps.getOneTemp(tempId);
+const getOneTemp = (tempId) => {
+  return Temps.getOneTemp(tempId);
 };
 
-const postOneTemp = async (temp) => {
-  return await Temps.postOneTemp(temp);
+const postOneTemp = (temp) => {
+  return Temps.postOneTemp(temp);
 };
 
-const patchOneTemp = async (tempId, tempPortion) => {
-  return await Temps.patchOneTemp(tempId, tempPortion);
+const patchOneTemp = (tempId, tempPortion) => {
+  return Temps.patchOneTemp(tempId, tempPortion);
 };
 
-const deleteOneTemp = async (tempId) => {
-  return await Temps.deleteOneTemp(tempId);
+const deleteOneTemp = (tempId) => {
+  return Temps.deleteOneTemp(tempId);
 };
 
 module.exports = {

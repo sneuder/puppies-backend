@@ -2,22 +2,14 @@ const message = require('../utils/messages');
 const sequelize = require('../db');
 const Breeds = sequelize.models.breeds;
 
-const getAllBreeds = async () => {
-  try {
-    return (await Breeds.findAll()) || message.noRecords('Breeds');
-  } catch (e) {
-    return message.error;
-  }
+const getAllBreeds = () => {
+  return Breeds.findAll();
+  //message.noRecords('Breeds');
+  // return message.error;
 };
 
-const getOneBreed = async (breedId) => {
-  try {
-    return (
-      (await Breeds.findByPk(breedId)) || message.noRecord('Breeds', breedId)
-    );
-  } catch (e) {
-    return message.error;
-  }
+const getOneBreed = (breedId) => {
+  return Breeds.findByPk(breedId);
 };
 
 const postOneBreed = async (newBreed) => {

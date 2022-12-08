@@ -1,13 +1,13 @@
 const databaseService = require('../services/databaseService');
 
-const postDatabase = async (req, res) => {
-  const allDogs = await databaseService.postDatabase();
-  res.json(allDogs);
+const postDatabase = (req, res) => {
+  databaseService.postDatabase().then((allDogs) => {
+    res.json(allDogs);
+  });
 };
 
 const deleteDatabase = (req, res) => {
-  databaseService.deleteDatabase();
-  res.send('Unpopulated Database');
+  databaseService.deleteDatabase().then(() => res.send('Unpopulated Database'));
 };
 
 module.exports = {

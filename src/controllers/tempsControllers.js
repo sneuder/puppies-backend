@@ -1,34 +1,39 @@
 const tempsService = require('../services/tempsService');
 
-const getAllTemps = async (req, res) => {
-  const allTemps = await tempsService.getAllTemps();
-  res.json(allTemps);
+const getAllTemps = (req, res) => {
+  tempsService.getAllTemps().then((allTemps) => {
+    res.json(allTemps);
+  });
 };
 
-const getOneTemp = async (req, res) => {
+const getOneTemp = (req, res) => {
   const tempId = req.params.tempId;
-  const temp = await tempsService.getOneTemp(tempId);
-  res.json(temp);
+  tempsService.getOneTemp(tempId).then((temp) => {
+    res.json(temp);
+  });
 };
 
-const postOneTemp = async (req, res) => {
+const postOneTemp = (req, res) => {
   const newTemp = req.body;
-  const temp = await tempsService.postOneTemp(newTemp);
-  res.json(temp);
+  tempsService.postOneTemp(newTemp).then((temp) => {
+    res.json(temp);
+  });
 };
 
-const patchOneTemp = async (req, res) => {
+const patchOneTemp = (req, res) => {
   const tempId = req.params.tempId;
   const tempPortion = req.body;
 
-  const msg = await tempsService.patchOneTemp(tempId, tempPortion);
-  res.json(msg);
+  tempsService.patchOneTemp(tempId, tempPortion).then((msg) => {
+    res.json(msg);
+  });
 };
 
-const deleteOneTemp = async (req, res) => {
+const deleteOneTemp = (req, res) => {
   const tempId = req.params.tempId;
-  const status = tempsService.deleteOneTemp(tempId);
-  res.json(status);
+  tempsService.deleteOneTemp(tempId).then((status) => {
+    res.json(status);
+  });
 };
 
 module.exports = {
