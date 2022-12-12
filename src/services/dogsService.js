@@ -1,7 +1,7 @@
 const Database = require('../database/Dogs');
 
-const getAllDogs = () => {
-  return Database.getAllDogs();
+const getAllDogs = (page) => {
+  return Database.getAllDogs(page);
 };
 
 const getOneDog = (dogId) => {

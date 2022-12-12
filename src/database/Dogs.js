@@ -4,10 +4,21 @@ const sequelize = require('../db');
 const Dogs = sequelize.models.dogs;
 const attrModels = Object.values(require('../constants/models'));
 
-const getAllDogs = async () => {
+const getAllDogs = async (page) => {
   try {
-    const dogs = await Dogs.findAll({ include: attrModels });
-    return dogs || message.noRecords('Dogs');
+    const count = (await Dogs.findAll()).length;
+    const dogs = await Dogs.findAll({
+      include: attrModels,
+      offset: (page - 1) * 10,
+      limit: 10,
+    });
+
+    const result = {
+      count: count,
+      rows: dogs,
+    };
+
+    return result || message.noRecords('Dogs');
   } catch (e) {
     return message.error;
   }
