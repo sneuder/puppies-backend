@@ -1,8 +1,7 @@
 const dogsService = require('../services/dogsService');
 
 const getAllDogs = (req, res) => {
-  const { page } = req.query;
-  dogsService.getAllDogs(page).then((allDogs) => {
+  dogsService.getAllDogs(req.query).then((allDogs) => {
     res.json(allDogs);
   });
 };
