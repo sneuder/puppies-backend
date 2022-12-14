@@ -10,7 +10,6 @@ const getAllDogs = async (queries) => {
   try {
     const searchConditions = {
       where: {},
-      include: attrModels,
     };
 
     Object.keys(queries).forEach((key) => {
@@ -27,7 +26,10 @@ const getAllDogs = async (queries) => {
     });
 
     const count = await Dogs.count(searchConditions);
-    const dogs = await Dogs.findAll(searchConditions);
+    const dogs = await Dogs.findAll({
+      ...searchConditions,
+      include: attrModels,
+    });
 
     return {
       count: count,
