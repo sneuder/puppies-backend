@@ -4,12 +4,39 @@ const sequelize = require('../db');
 const Dogs = sequelize.models.dogs;
 const attrModels = Object.values(require('../constants/models'));
 
-const getAllDogs = async () => {
+const { Op } = require('sequelize');
+
+const getAllDogs = async (queries) => {
   try {
-    const dogs = await Dogs.findAll({ include: attrModels });
-    return dogs || message.noRecords('Dogs');
+    const searchConditions = {
+      where: {},
+    };
+
+    Object.keys(queries).forEach((key) => {
+      if (key === 'search') {
+        return (searchConditions.where.name = {
+          [Op.iRegexp]: queries[key],
+        });
+      }
+
+      if (key === 'page') {
+        searchConditions.offset = (queries[key] - 1) * 10;
+        return (searchConditions.limit = 10);
+      }
+    });
+
+    const count = await Dogs.count(searchConditions);
+    const dogs = await Dogs.findAll({
+      ...searchConditions,
+      include: attrModels,
+    });
+
+    return {
+      count: count,
+      rows: dogs,
+    };
   } catch (e) {
-    return message.error;
+    console.log(e);
   }
 };
 
