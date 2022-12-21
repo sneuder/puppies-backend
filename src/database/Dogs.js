@@ -23,6 +23,11 @@ const getAllDogs = async (queries) => {
         searchConditions.offset = (queries[key] - 1) * 10;
         return (searchConditions.limit = 10);
       }
+
+      if (key === 'order') {
+        const orderValue = queries[key].toUpperCase();
+        searchConditions.order = [['name', orderValue]];
+      }
     });
 
     const count = await Dogs.count(searchConditions);

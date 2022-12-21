@@ -1,6 +1,8 @@
 const Database = require('../database/Dogs');
 
 const getAllDogs = (queries) => {
+  if (queries.search === '') delete queries.search;
+  if (queries.order !== 'desc' && queries.order !== 'asc') delete queries.order;
   return Database.getAllDogs(queries);
 };
 
