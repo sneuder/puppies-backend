@@ -8,14 +8,10 @@ const attrModels = Object.values(require('../constants/models'));
 
 const getAllDogs = async (searchConditions) => {
   try {
-    const count = await Dogs.count(searchConditions);
-    const dogs = await Dogs.findAll(searchConditions);
-    for (const dog of dogs) dog.dataValues.temps = await dog.getTemps();
+    const dogs = await Dogs.findAndCountAll(searchConditions);
+    for (const dog of dogs.rows) dog.dataValues.temps = await dog.getTemps();
 
-    return {
-      count: count,
-      row: dogs,
-    };
+    return dogs;
   } catch (e) {
     throw new Error(e);
   }

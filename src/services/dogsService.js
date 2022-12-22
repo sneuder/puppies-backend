@@ -8,8 +8,13 @@ const getAllDogs = (queries) => {
   if (queries.order !== 'desc' && queries.order !== 'asc') delete queries.order;
 
   const searchConditions = {
+    distinct: true,
     where: {},
-    include: Temperament,
+    include: [
+      {
+        model: Temperament,
+      },
+    ],
   };
 
   Object.keys(queries).forEach((key) => {
