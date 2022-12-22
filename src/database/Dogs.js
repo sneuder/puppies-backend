@@ -4,52 +4,13 @@ const sequelize = require('../db');
 const Dogs = sequelize.models.dogs;
 const attrModels = Object.values(require('../constants/models'));
 
-const { Op } = require('sequelize');
+// const { Op } = require('sequelize');
 
-const getAllDogs = async (queries) => {
+const getAllDogs = async (searchConditions) => {
   try {
-    const searchConditions = {
-      where: {},
-      include: attrModels[0],
-    };
-
-    Object.keys(queries).forEach((key) => {
-      if (key === 'search') {
-        return (searchConditions.where.name = {
-          [Op.iRegexp]: queries[key],
-        });
-      }
-
-      if (key === 'page') {
-        searchConditions.offset = (queries[key] - 1) * 10;
-        return (searchConditions.limit = 10);
-      }
-
-      if (key === 'order') {
-        const orderValue = queries[key].toUpperCase();
-        searchConditions.order = [['name', orderValue]];
-      }
-
-      if (key === 'filter') {
-        searchConditions.include = [
-          {
-            model: attrModels[0],
-            where: {
-              temperament: queries[key],
-            },
-          },
-        ];
-      }
-    });
-
     const count = await Dogs.count(searchConditions);
-    const dogs = await Dogs.findAll({
-      ...searchConditions,
-    });
-
-    for (const dog of dogs) {
-      dog.dataValues.temps = await dog.getTemps();
-    }
+    const dogs = await Dogs.findAll(searchConditions);
+    for (const dog of dogs) dog.dataValues.temps = await dog.getTemps();
 
     return {
       count: count,
