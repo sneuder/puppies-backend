@@ -10,6 +10,7 @@ const getAllDogs = async (queries) => {
   try {
     const searchConditions = {
       where: {},
+      include: attrModels[0],
     };
 
     Object.keys(queries).forEach((key) => {
@@ -28,20 +29,34 @@ const getAllDogs = async (queries) => {
         const orderValue = queries[key].toUpperCase();
         searchConditions.order = [['name', orderValue]];
       }
+
+      if (key === 'filter') {
+        searchConditions.include = [
+          {
+            model: attrModels[0],
+            where: {
+              temperament: queries[key],
+            },
+          },
+        ];
+      }
     });
 
     const count = await Dogs.count(searchConditions);
     const dogs = await Dogs.findAll({
       ...searchConditions,
-      include: attrModels,
     });
+
+    for (const dog of dogs) {
+      dog.dataValues.temps = await dog.getTemps();
+    }
 
     return {
       count: count,
-      rows: dogs,
+      row: dogs,
     };
   } catch (e) {
-    console.log(e);
+    throw new Error(e);
   }
 };
 
