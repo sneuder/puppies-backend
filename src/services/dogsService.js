@@ -39,7 +39,9 @@ const getAllDogs = (queries) => {
         {
           model: Temperament,
           where: {
-            temperament: queries[key],
+            temperament: {
+              [Op.iRegexp]: queries[key],
+            },
           },
         },
       ];
