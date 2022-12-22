@@ -18,6 +18,10 @@ const postOneDog = (req, res) => {
   dogsService.postOneDog(newDog).then((dog) => {
     res.json(dog);
   });
+
+  res.json({
+    done: true,
+  });
 };
 
 const patchOneDog = (req, res) => {
