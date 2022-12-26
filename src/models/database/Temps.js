@@ -1,17 +1,16 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  const Breeds = sequelize.define('breeds', {
+  const Temps = sequelize.define('temps', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
     },
-    breed_group: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
-  return Breeds;
+  return Temps;
 };
