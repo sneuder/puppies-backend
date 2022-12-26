@@ -1,6 +1,6 @@
 const Database = require('../database/Dogs');
 const { Op } = require('sequelize');
-const { Temperament } = require('../constants/models');
+const { Temps } = require('../constants/models');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 
@@ -13,7 +13,7 @@ const getAllDogs = (queries) => {
     where: {},
     include: [
       {
-        model: Temperament,
+        model: Temps,
       },
     ],
   };
@@ -38,7 +38,7 @@ const getAllDogs = (queries) => {
     if (key === 'filter') {
       searchConditions.include = [
         {
-          model: Temperament,
+          model: Temps,
           where: {
             temperament: {
               [Op.iRegexp]: queries[key],

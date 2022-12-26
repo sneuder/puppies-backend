@@ -5,7 +5,11 @@ class DogAttributes {
   constructor(dog) {
     this.temps = this.setAttributes(dog, 'temperament');
     this.countries = this.setAttributes(dog, 'origin');
-    this.breeds = dog.breed_group;
+    this.breeds = this.setAttribute(dog, 'breed_group');
+  }
+
+  setAttribute(dog, refDog) {
+    return new Attribute(dog[refDog]);
   }
 
   setAttributes(dog, refDog) {

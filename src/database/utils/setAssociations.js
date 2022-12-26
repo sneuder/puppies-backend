@@ -1,37 +1,44 @@
 const attrModels = require('../../constants/models');
 
-const temperaments = async (postedDog, dogAttrs) => {
+const temps = async (postedDog, dogAttrs) => {
+  if (dogAttrs.length === 0) return;
+
   for (let i = 0; i < dogAttrs.length; i++) {
-    const [newRecord, created] = await attrModels.Temperament.findOrCreate({
-      where: { temperament: dogAttrs[i] },
+    const [newRecord, created] = await attrModels.Temps.findOrCreate({
+      where: { name: dogAttrs[i].name },
+      defaults: dogAttrs[i],
     });
 
     await postedDog.addTemps(newRecord);
   }
 };
 
-const breeds = async (postedDog, dogAttrs) => {
-  for (let i = 0; i < dogAttrs.length; i++) {
-    const [newRecord, created] = await attrModels.breed_group.findOrCreate({
-      where: { breed_group: dogAttrs[i] },
-    });
-
-    await postedDog.addBreeds(newRecord);
-  }
-};
-
 const countries = async (postedDog, dogAttrs) => {
+  if (dogAttrs.length === 0) return;
+
   for (let i = 0; i < dogAttrs.length; i++) {
-    const [newRecord, created] = await attrModels.countries.findOrCreate({
-      where: { countries: dogAttrs[i] },
+    const [newRecord, created] = await attrModels.Countries.findOrCreate({
+      where: { name: dogAttrs[i].name },
+      defaults: dogAttrs[i],
     });
 
     await postedDog.addCountries(newRecord);
   }
 };
 
+const breeds = async (postedDog, dogAttr) => {
+  if (!dogAttr) return;
+
+  const [newRecord, created] = await attrModels.Breeds.findOrCreate({
+    where: { name: dogAttr },
+    defaults: dogAttr,
+  });
+
+  await postedDog.addBreeds(newRecord);
+};
+
 module.exports = {
-  temperaments,
-  breeds,
+  temps,
   countries,
+  breeds,
 };

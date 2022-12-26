@@ -5,6 +5,7 @@ class Dog {
     this.id = uuidv4();
     this.name = dog.name;
     this.life_span = dog.life_span;
+    this.image = dog.image.url;
     this.attributes = dog.attributes;
   }
 }

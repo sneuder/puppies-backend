@@ -6,16 +6,14 @@ const setAssociations = require('./utils/setAssociations');
 
 const postDatabase = async (dog) => {
   try {
-    const postedDog = await Dogs.create(dog.formatedDog);
+    const postedDog = await Dogs.create(dog);
     // make associations
-    const attributes = ['temperaments', 'breeds', 'countries'];
+    const attributes = Object.keys(dog.attributes);
     for (let i = 0; i < attributes.length; i++) {
-      if (dog.attributes[attributes[i]]) {
-        await setAssociations[attributes[i]](
-          postedDog,
-          dog.attributes[attributes[i]]
-        );
-      }
+      await setAssociations[attributes[i]](
+        postedDog,
+        dog.attributes[attributes[i]]
+      );
     }
   } catch (e) {
     throw new Error(e);

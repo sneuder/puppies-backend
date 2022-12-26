@@ -1,4 +1,4 @@
-const associationsPuppies = require('./models/associations/index');
+const associationsPuppies = require('./models/database/associations/index');
 const { Sequelize } = require('sequelize');
 
 require('dotenv').config();
@@ -8,16 +8,10 @@ const sequelize = new Sequelize(URL_DB, {
   logging: false,
 });
 
-// const sequelize = new Sequelize(DBNAME, USERDB, PASSWORDB, {
-//   host: HOST,
-//   dialect: 'postgres',
-//   logging: false,
-// });
-
 // linking models to database
 const requireModels = ['Dogs', 'Temps', 'Countries', 'Breeds'];
 requireModels.forEach((requiredModel) => {
-  const model = require(`./models/${requiredModel}`);
+  const model = require(`./models/database/${requiredModel}`);
   model(sequelize);
 });
 
