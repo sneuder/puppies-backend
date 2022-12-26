@@ -1,39 +1,21 @@
 // model only used for database population
 const Attribute = require('./Attribute');
 
-class Attributes {
+class DogAttributes {
   constructor(dog) {
-    this.temps = [];
-    this.breeds = [];
-    this.countries = [];
-
-    this.setAttributes(dog);
+    this.temps = this.setAttributes(dog, 'temperament');
+    this.countries = this.setAttributes(dog, 'origin');
+    this.breeds = dog.breed_group;
   }
 
-  setAttributes(dog) {
-    const attrsKeys = ['temperament', 'breed_group', 'origin'];
-    let attrs = {};
+  setAttributes(dog, refDog) {
+    if (dog[refDog] && dog[refDog] !== '') {
+      const dogAttrs = dog[refDog].replace(/,/g, '').split(' ');
+      return dogAttrs.map((dogAttr) => new Attribute(dogAttr));
+    }
 
-    attrsKeys.forEach((attrKey) => {
-      if (dog[attrKey] && dog[attrKey] !== '') {
-        const dogAttrs = dog[attrKey].replace(/,/g, '').split(' ');
-
-        if (attrKey === 'temperament') attrKey = 'temps';
-        if (attrKey === 'origin') attrKey = 'countries';
-        if (attrKey === 'breed_group') attrKey = 'breeds';
-
-        attrs[attrKey] = dogAttrs.map((dogAttr) => Attribute(dogAttr));
-      }
-
-      attrs[attrKey] = [];
-    });
-
-    this.temps = attrs.temps;
-    this.breeds = attrs.breeds;
-    this.countries = attrs.countries;
+    return [];
   }
 }
 
-module.exports = {
-  Attributes,
-};
+module.exports = DogAttributes;

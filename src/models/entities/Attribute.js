@@ -9,6 +9,4 @@ class Attribute {
   }
 }
 
-module.exports = {
-  Attribute,
-};
+module.exports = Attribute;
