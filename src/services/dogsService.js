@@ -2,6 +2,7 @@ const Database = require('../database/Dogs');
 const { Op } = require('sequelize');
 const { Temperament } = require('../constants/models');
 const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');
 
 const getAllDogs = (queries) => {
   if (queries.search === '') delete queries.search;
@@ -59,6 +60,7 @@ const postOneDog = (dog) => {
   return axios
     .get('https://dog.ceo/api/breeds/image/random')
     .then(({ data }) => {
+      dog.id = uuidv4();
       dog.image = data.message;
       return Database.postOneDog(dog);
     });
