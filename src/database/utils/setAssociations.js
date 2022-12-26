@@ -2,7 +2,7 @@ const attrModels = require('../../constants/models');
 
 const temperaments = async (postedDog, dogAttrs) => {
   for (let i = 0; i < dogAttrs.length; i++) {
-    const [newRecord, created] = await attrModels.temperament.findOrCreate({
+    const [newRecord, created] = await attrModels.Temperament.findOrCreate({
       where: { temperament: dogAttrs[i] },
     });
 
