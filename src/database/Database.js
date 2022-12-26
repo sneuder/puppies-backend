@@ -5,16 +5,20 @@ const attrModels = require('../constants/models');
 const setAssociations = require('./utils/setAssociations');
 
 const postDatabase = async (dog) => {
-  const postedDog = await Dogs.create(dog.formatedDog);
-  // make associations
-  const attributes = ['temperaments', 'breeds', 'countries'];
-  for (let i = 0; i < attributes.length; i++) {
-    if (dog.attributes[attributes[i]]) {
-      await setAssociations[attributes[i]](
-        postedDog,
-        dog.attributes[attributes[i]]
-      );
+  try {
+    const postedDog = await Dogs.create(dog.formatedDog);
+    // make associations
+    const attributes = ['temperaments', 'breeds', 'countries'];
+    for (let i = 0; i < attributes.length; i++) {
+      if (dog.attributes[attributes[i]]) {
+        await setAssociations[attributes[i]](
+          postedDog,
+          dog.attributes[attributes[i]]
+        );
+      }
     }
+  } catch (e) {
+    throw new Error(e);
   }
 };
 

@@ -1,4 +1,5 @@
 const attributes = ['temperament', 'breed_group', 'origin'];
+const { v4: uuidv4 } = require('uuid');
 
 const postDog = (dog) => {
   return {
@@ -11,7 +12,7 @@ const postDog = (dog) => {
 
 const formatDog = (dog) => {
   return {
-    id: dog.id,
+    id: uuidv4(),
     name: dog.name,
     lifespan: dog.life_span,
     image: dog.image.url,
