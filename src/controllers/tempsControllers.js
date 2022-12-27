@@ -15,9 +15,10 @@ const getOneTemp = (req, res) => {
 
 const postOneTemp = (req, res) => {
   const newTemp = req.body;
-  tempsService.postOneTemp(newTemp).then((temp) => {
-    res.json(temp);
-  });
+  console.log(newTemp);
+  // tempsService.postOneTemp(newTemp).then((temp) => {
+  //   res.json(temp);
+  // });
 };
 
 const patchOneTemp = (req, res) => {

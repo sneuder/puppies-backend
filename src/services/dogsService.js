@@ -4,6 +4,9 @@ const { Temps } = require('../constants/models');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 
+const Dog = require('../models/entities/Dogs');
+const Attributes = require('../models/entities/Attributes');
+
 const getAllDogs = (queries) => {
   if (queries.search === '') delete queries.search;
   if (queries.order !== 'desc' && queries.order !== 'asc') delete queries.order;
@@ -61,7 +64,11 @@ const postOneDog = (dog) => {
     .get('https://dog.ceo/api/breeds/image/random')
     .then(({ data }) => {
       dog.id = uuidv4();
-      dog.image = data.message;
+      dog.image = { url: data.message };
+
+      dog.attributes = new Attributes(dog);
+      dog = new Dog(dog);
+
       return Database.postOneDog(dog);
     });
 };

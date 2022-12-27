@@ -4,7 +4,7 @@ const sequelize = require('../db');
 const Dogs = sequelize.models.dogs;
 const attrModels = Object.values(require('../constants/models'));
 
-// const { Op } = require('sequelize');
+const setAssociations = require('./utils/setAssociations');
 
 const getAllDogs = async (searchConditions) => {
   try {
@@ -31,7 +31,17 @@ const getOneDog = async (dogId) => {
 
 const postOneDog = async (dog) => {
   try {
-    return await Dogs.create(dog);
+    const postedDog = await Dogs.create(dog);
+    // make associations
+    const attributes = Object.keys(dog.attributes);
+    for (let i = 0; i < attributes.length; i++) {
+      await setAssociations[attributes[i]](
+        postedDog,
+        dog.attributes[attributes[i]]
+      );
+    }
+
+    return await Dogs.findByPk(dog.id, { include: { all: true } });
   } catch (e) {
     return message.error;
   }
