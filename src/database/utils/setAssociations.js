@@ -27,10 +27,10 @@ const countries = async (postedDog, dogAttrs) => {
 };
 
 const breeds = async (postedDog, dogAttr) => {
-  if (!dogAttr) return;
+  if (!dogAttr.name) return;
 
   const [newRecord, created] = await attrModels.Breeds.findOrCreate({
-    where: { name: dogAttr },
+    where: { name: dogAttr.name },
     defaults: dogAttr,
   });
 
