@@ -3,14 +3,14 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   const Dogs = sequelize.define('dogs', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lifespan: {
+    life_span: {
       type: DataTypes.STRING,
       allowNull: false,
     },

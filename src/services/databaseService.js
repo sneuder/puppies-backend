@@ -1,24 +1,22 @@
-const axiosRequest = require('../utils/axiosRequest');
-const formating = require('../utils/formatting');
+const Dog = require('../models/entities/Dogs');
+const DogAttributes = require('../models/entities/Attributes');
 
+const axiosRequest = require('../utils/axiosRequest');
 const Database = require('../database/Database');
 
 // post database
 const postDatabase = () => {
   return axiosRequest('GET', '/breeds').then((allDogs) => {
     return Database.deleteDatabase().then(async () => {
-      // for (let i = 0; i < allDogs.length; i++) {
-      //   const formatedDog = formating.postDog(allDogs[i]);
-      //   await Database.postDatabase(formatedDog);
-      // }
-
       const postedDogs = allDogs.map((dog) => {
-        const formatedDog = formating.postDog(dog);
-        return Database.postDatabase(formatedDog);
+        dog.attributes = new DogAttributes(dog);
+        dog = new Dog(dog);
+
+        return Database.postDatabase(dog);
       });
 
       return Promise.all(postedDogs).then(() => {
-        return Database.getDatabase();
+        // return Database.getDatabase();
       });
     });
   });

@@ -1,7 +1,11 @@
 const Database = require('../database/Dogs');
-
 const { Op } = require('sequelize');
-const { Temperament } = require('../constants/models');
+const { Temps } = require('../constants/models');
+const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');
+
+const Dog = require('../models/entities/Dogs');
+const Attributes = require('../models/entities/Attributes');
 
 const getAllDogs = (queries) => {
   if (queries.search === '') delete queries.search;
@@ -12,7 +16,7 @@ const getAllDogs = (queries) => {
     where: {},
     include: [
       {
-        model: Temperament,
+        model: Temps,
       },
     ],
   };
@@ -37,9 +41,9 @@ const getAllDogs = (queries) => {
     if (key === 'filter') {
       searchConditions.include = [
         {
-          model: Temperament,
+          model: Temps,
           where: {
-            temperament: {
+            name: {
               [Op.iRegexp]: queries[key],
             },
           },
@@ -56,7 +60,17 @@ const getOneDog = (dogId) => {
 };
 
 const postOneDog = (dog) => {
-  return Database.postOneDog(dog);
+  return axios
+    .get('https://dog.ceo/api/breeds/image/random')
+    .then(({ data }) => {
+      dog.id = uuidv4();
+      dog.image = { url: data.message };
+
+      dog.attributes = new Attributes(dog);
+      dog = new Dog(dog);
+
+      return Database.postOneDog(dog);
+    });
 };
 
 const patchOneDog = (dogPortion, dogId) => {
