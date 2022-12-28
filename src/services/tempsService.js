@@ -1,4 +1,5 @@
 const Temps = require('../database/Temps');
+const Attribute = require('../models/entities/Attribute');
 
 const getAllTemps = () => {
   return Temps.getAllTemps();
@@ -9,6 +10,7 @@ const getOneTemp = (tempId) => {
 };
 
 const postOneTemp = (temp) => {
+  temp = new Attribute(temp.name);
   return Temps.postOneTemp(temp);
 };
 
