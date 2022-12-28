@@ -38,6 +38,12 @@ const deletedNoRecord = (recordType, idRecord) => {
   };
 };
 
+const attributeElement = (attr, name) => {
+  return {
+    status: `${attr} ${name} already exist`,
+  };
+};
+
 module.exports = {
   error,
   noRecords,
@@ -46,4 +52,5 @@ module.exports = {
   updatedNoRecord,
   deletedRecord,
   deletedNoRecord,
+  attributeElement,
 };

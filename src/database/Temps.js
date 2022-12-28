@@ -1,6 +1,7 @@
 const message = require('../utils/messages');
-const sequelize = require('../db');
-const Temps = sequelize.models.temps;
+
+const { Temps } = require('../constants/models');
+const { Op } = require('sequelize');
 
 const getAllTemps = async () => {
   try {
@@ -20,7 +21,17 @@ const getOneTemp = async (tempId) => {
 
 const postOneTemp = async (temp) => {
   try {
-    return await Temps.create(temp);
+    const [record, created] = await Temps.findOrCreate({
+      where: {
+        name: {
+          [Op.iLike]: temp.name,
+        },
+      },
+      defaults: temp,
+    });
+
+    if (created) return record;
+    return message.attributeElement('Temperament', temp.name);
   } catch (e) {
     return message.error;
   }
