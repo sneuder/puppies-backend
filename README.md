@@ -28,21 +28,37 @@ Base url: `https://localhost:3000/api/v1`
     <th>Breeds</th>
     <th>Temps</th>
     <th>Countries</th>
-    <th>DataBase</th>
   </tr>
   <tr>
-    <td>get: `/dogs/getalldogs`</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+    <td>get: <code>/dogs/getalldogs</code></td>
+    <td>get: <code>/breeds/allbreeds</code></td>
+    <td>get: <code>/temps/alltemps</code></td>
+    <td>get: <code>/countries/allcountries</code></td>
   </tr>
   <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
+    <td>get: <code>/dogs/{dogId}</code></td>
+    <td>get: <code>/breeds/{breedId}</code></td>
+    <td>get: <code>/temps/{tempId}</code></td>
+    <td>get: <code>/countries/{countryId}</code></td>
   </tr>
   <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
+    <td>post: <code>/dogs/newdog</code></td>
+    <td>post: <code>/breeds/newbreed</code></td>
+    <td>post: <code>/temps/newtemp</code></td>
+    <td>post: <code>/countries/newcountry</code></td>
+  </tr>
+  <tr>
+    <td>patch: <code>/dogs/{dogId}</code></td>
+    <td>patch: <code>/breeds/{breedId}</code></td>
+    <td>patch: <code>/temps/{tempId}</code></td>
+    <td>patch: <code>/countries/{countryId}</code></td>
+  </tr>
+  <tr>
+    <td>delete: <code>/dogs/{dogId}</code></td>
+    <td>delete: <code>/breeds/{breedId}</code></td>
+    <td>delete: <code>/temps/{tempId}</code></td>
+    <td>delete: <code>/countries/{countryId}</code></td>
   </tr>
 </table>
+
+## Bodies for posting
