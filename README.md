@@ -66,7 +66,5 @@ Base url: `https://localhost:3000/api/v1`
 
 ### Bodies for posting
 
-### DataBase
-
 * Populate: post `/database/populate`
 * Unpopulate: delete `database/unpopulate`
