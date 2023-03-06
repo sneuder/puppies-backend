@@ -20,6 +20,9 @@ It contains all the logic related to CRUD. The structure is based on 3 layer arc
 It is important to mention it can be possible to make settings to connect to database in different ways. You can select or set up like you want. It is up to you.
 
 ## Enpoints
+For each request, the service makes sure you are allowed to use it. This is a token you should use in the `Authorization: Bearer Token`: 
+`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNuZXVkZXI4QGdtYWlsLmNvbSIsImlhdCI6MTY2OTU3NzMwMX0.75-pSCy_NfEMEoHBg7V7tR5-rlzgqbt3QIE5DyK83HM`
+
 Base url: `https://localhost:3000/api/v1`
 
 <table>
